@@ -58,7 +58,7 @@
 ;;;
 ;;; * Add include path to not yet installed headers, and remove include flag
 ;;;   (-I) to installed directory, and Notice that we must explicitely mention
-;;;   libecl.so/ecl.dll instead of using -lecl. This is to avoid interference
+;;;   libecl.so/cygecl.dll instead of using -lecl. This is to avoid interference
 ;;;   with an already installed copy of ECL.
 ;;;
 (setq c::*cc-flags*
@@ -140,7 +140,7 @@
 ;;;
 ;;; We do not need the -rpath flag for the library, nor -lecl.
 ;;;
-(let* ((c::*ld-shared-flags* #-msvc "@SHARED_LDFLAGS@ @LDFLAGS@ @SONAME_LDFLAGS@ @CORE_LIBS@ @FASL_LIBS@ @LIBS@"
+(let* ((c::*ld-shared-flags* #-msvc " @IMPLIB_LDFLAGS@ @SHARED_LDFLAGS@ @LDFLAGS@ @SONAME_LDFLAGS@ @CORE_LIBS@ @FASL_LIBS@ @LIBS@"
 			     #+msvc "@SHARED_LDFLAGS@ @LDFLAGS@ @STATICLIBS@ @CLIBS@")
        (c::*cc-flags* (concatenate 'string "-DECL_API -I@true_builddir@/c " c::*cc-flags*))
        (extra-args nil))

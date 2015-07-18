@@ -174,10 +174,14 @@ install:
 	  if test -s $$i ; then \
 	   if echo $$i | grep dll; then \
 	    $(INSTALL_LIBRARY) $$i $(DESTDIR)$(bindir); \
-	   fi; \
-	   $(INSTALL_LIBRARY) $$i $(DESTDIR)$(libdir); \
+           else \
+            $(INSTALL_LIBRARY) $$i $(DESTDIR)$(libdir); \
+           fi \
 	  fi \
 	done
+        if [ "x@IMPLIB_NAME@" != "x" -a -f "@IMPLIB_NAME@" ]; then \
+          $(INSTALL_LIBRARY) @IMPLIB_NAME@ $(DESTDIR)$(libdir); \
+        fi
 	if [ "x@SONAME@" != "x" -a -f "@SONAME@" ]; then \
 	  ( cd $(DESTDIR)$(libdir) && $(RM) -f @SONAME3@ @SONAME2@ @SONAME1@ && \
 	    mv @SONAME@ @SONAME3@ && \
