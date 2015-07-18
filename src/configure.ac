@@ -11,7 +11,7 @@ dnl
 AC_INIT([ecl],[15.3.7],[])
 AC_REVISION([$Revision$])
 AC_CONFIG_SRCDIR([bare.lsp.in])
-AC_CONFIG_AUX_DIR([gmp])
+AC_CONFIG_AUX_DIR([.])
 AC_PREREQ(2.69)
 
 dnl -----------------------------------------------------------------------
